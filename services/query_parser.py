@@ -16,7 +16,7 @@ Extract the date and location from the following query: "{query}"
 """
 
 prompt = PromptTemplate(input_variables=["query"], template=prompt_template)
-llm = ChatOpenAI(model="gpt-3.5-turbo", temperature=0.7, openai_api_key="openApiKey")
+llm = ChatOpenAI(model="gpt-3.5-turbo", temperature=0.7, openai_api_key=openApiKey)
 llm_chain = LLMChain(prompt=prompt, llm=llm)
 
 def parse_query(query: str):
