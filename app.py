@@ -5,10 +5,23 @@ from langchain.prompts import PromptTemplate
 from langchain.chat_models import ChatOpenAI
 from langchain.chains import LLMChain
 
+
+# COMMENT-1: A single app.py file is not ideal for scalability and maintainability. Suggested refactoring: 
+#       main.py: Entrypoint for FastAPI.
+#       routes/: Define route-specific logic (e.g., availability.py, visualization.py).
+#       services/: Include reusable logic such as LangChain integrations or room availability checks.
+#       models/: Define data models like RoomQuery.
+#       utils/: Helper functions like parse_query(). #
+
+
 import openai
 openai.api_key = "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"
 
 app = FastAPI()
+
+
+# COMMENT-5: No plase for hardcoded data here 
+# #
 
 rooms = [
     {"id": 1, "location": "Main Office", "available_from": "2024-11-17", "available_to": "2024-11-20"},
@@ -26,6 +39,14 @@ Extract the date and location from the following query: "{query}"
 prompt = PromptTemplate(input_variables=["query"], template=prompt_template)
 llm = ChatOpenAI(model="gpt-3.5-turbo", temperature=0.7, openai_api_key="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")
 llm_chain = LLMChain(prompt=prompt, llm=llm)
+
+#COMMENT-3: The parse_query() function assumes a specific format ("Location: [location], Date: [date]") from the LLM. 
+# Use a more robust approach, such as extracting structured data with LangChain tools or regex.
+# #
+
+# COMMENT-4: Parsing logic in parse_query() raises generic exceptions, which could lead to vague responses. 
+# Validate user input more robustly (e.g., handle invalid dates or locations gracefully).
+# #
 
 def parse_query(query: str):
     """
@@ -78,6 +99,16 @@ async def check_room_availability(room_query: RoomQuery):
         raise HTTPException(status_code=400, detail=str(e))
 
 # Visualization Logic
+
+
+# COMMENT-2: The visualization logic generates a bar chart but doesn't link it directly to room data queries. 
+# Align visualization with room queries for a more cohesive experience. Example:
+#   Show a bar chart for a specific room or location based on query.
+#   Embed the chart in the API response as base64, allowing easier rendering in front-end.
+# #
+
+#COMMENT-6: Proximity-Based Suggestions: No logic to suggest nearby rooms based on proximity if an exact match isn’t found. (Could include mock geospatial data and a proximity calculation.)
+
 def get_booking_distribution():
     """
     Create a bar chart for the distribution of room availability over the past week.
