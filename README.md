@@ -32,6 +32,7 @@ pydantic: For data validation.
 
 # Setup API key
 openai.api_key = "your_openai_api_key"
+
 RUN: uvicorn app:app --reload
 
 # Endpoints
