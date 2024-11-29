@@ -60,7 +60,7 @@ Response
 
 2.  Availability Visualization
 
-URL: http://127.0.0.1:8000/visualization/availability-chart
+URL: http://127.0.0.1:8000/visualization/availability-chart?query=Show+me+rooms+in+New+York
 
 Method: GET
 
