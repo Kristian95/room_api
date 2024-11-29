@@ -35,7 +35,7 @@ openai.api_key = "your_openai_api_key"
 # Endpoints
 1. Check Room Availability
    
-URL: /check-room-availability
+URL: http://127.0.0.1:8000/availability/check-room
 
 Method: POST
 
@@ -60,7 +60,7 @@ Response
 
 2.  Availability Visualization
 
-URL: /availability-visualization
+URL: http://127.0.0.1:8000/visualization/availability-chart
 
 Method: GET
 
