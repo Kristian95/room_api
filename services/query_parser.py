@@ -23,7 +23,7 @@ def parse_query(query: str):
     """
     Use LangChain to parse a natural language query and extract location and date.
     """
-    response = llm_chain.run(query)
+    response = llm_chain.invoke({"query": query})
     try:
         location, date = response.split(",")
         location = location.split(":")[1].strip()
