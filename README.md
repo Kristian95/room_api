@@ -13,6 +13,7 @@ Python: Version 3.10 or higher is installed. You can verify your Python version 
 Clone this repository to your local machine:
 
 git clone <git@github.com:Kristian95/room_api.git>
+
 cd <room_api>
 
 # Install Dependencies
