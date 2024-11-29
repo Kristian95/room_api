@@ -1,6 +1,7 @@
 from fastapi import APIRouter, HTTPException
 from fastapi.responses import FileResponse
 from services.visualization import generate_availability_chart
+from services.query_parser import parse_query
 
 router = APIRouter()
 
