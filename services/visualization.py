@@ -42,13 +42,13 @@ def generate_availability_chart(location=None, room_id=None, query=None):
 
     filtered_rooms = []
 
-    # Use location or room_id to filter rooms
+    #Use location or room_id to filter rooms
     if location or room_id:
         filtered_rooms = [
             room for room in rooms
             if (location and location.lower() in room["location"].lower()) or (room_id and room["room_id"] == room_id)
         ]
-    # Use the query with TfidfVectorizer for vector-based search
+    #Use the query with TfidfVectorizer for vector-based search
     elif query:
         similar_room_ids = find_similar_rooms(query)
         filtered_rooms = [room for room in rooms if room["room_id"] in similar_room_ids]
